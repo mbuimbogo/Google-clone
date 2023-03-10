@@ -14,6 +14,14 @@ export default function HomeSearch() {
         router.push(`/search/web?ssearchTerm=${input}`);
 
     }
+   async function randomSearch(){
+        const res = await fetch("https://random-word-api.herokuapp.com/word")
+        .then((res)=> res.json())
+        .then((data)=> data[0]);
+        if(!res) return;
+        router.push(`/search/web?ssearchTerm=${res}`);
+    }
+
   return (
     <>
     <form onSubmit={handleSubmit} className='flex w-full mt-5 mx-auto max-w-[90%] border border-gray-200 px-5 py-3 rounded-full hover:shadow-md transition-shadow focus-within:shadow-md sm:max-w-xl lg:max-w-2xl'>
@@ -22,8 +30,8 @@ export default function HomeSearch() {
       <FaMicrophone className='text-lg'/>
     </form>
     <div className='flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-center mt-8'>
-        <button className='btn'>Google Search</button>
-        <button className='btn'>I Am Feeling Lucky</button>
+        <button onClick={handleSubmit} className='btn'>Google Search</button>
+        <button onClick={randomSearch} className='btn'>I Am Feeling Lucky</button>
     </div>
     </>
   )
