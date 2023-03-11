@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 
 export default function HomeSearch() {
     const [input, setInput]=useState("")
+    const [randomSearchLoading,setRandomSearchLoading] = useState("")
     const router = useRouter()
 
     function handleSubmit(event) {
@@ -15,11 +16,13 @@ export default function HomeSearch() {
 
     }
    async function randomSearch(){
+    setRandomSearchLoading(true)
         const res = await fetch("https://random-word-api.herokuapp.com/word")
         .then((res)=> res.json())
         .then((data)=> data[0]);
         if(!res) return;
         router.push(`/search/web?ssearchTerm=${res}`);
+        setRandomSearchLoading(false)
     }
 
   return (
@@ -31,7 +34,17 @@ export default function HomeSearch() {
     </form>
     <div className='flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-center mt-8'>
         <button onClick={handleSubmit} className='btn'>Google Search</button>
-        <button onClick={randomSearch} className='btn'>I Am Feeling Lucky</button>
+        <button disabled={randomSearchLoading} onClick={randomSearch} className='btn flex items-center justify-center disabled:opacity-80'>
+            {randomSearchLoading ? (
+               <img 
+               src='spinner.svg'
+               alt='loading...'
+               className='h-16 text-center'
+               />
+            ): (
+                "I Am Feeling Lucky"
+            )}
+            </button>
     </div>
     </>
   )
