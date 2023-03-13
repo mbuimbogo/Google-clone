@@ -7,7 +7,7 @@ export default function CountryLookup() {
 
 
   useEffect(()=> {
-      fetch(`https://extreme-ip-lookup.com/json/?key=${process.env.NEXT_PUBLIC_IP_API_KEY}`)
+      fetch(`https://extreme-ip-lookup.com/json/?key=${process.env.NEXT_PUBLIC_IP_API_KEY}`) //check extreme ip lookup website 
       .then(res=>res.json())
       .then(data=>setCountry(data.country))
   },[])
