@@ -12,7 +12,7 @@ export default function HomeSearch() {
     function handleSubmit(event) {
         event.preventDefault();
         if(!input.trim()) return;
-        router.push(`/search/web?ssearchTerm=${input}`);
+        router.push(`/search/web?searchTerm=${input}`);
 
     }
    async function randomSearch(){
