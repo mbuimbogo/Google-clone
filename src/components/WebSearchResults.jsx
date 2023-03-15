@@ -14,7 +14,7 @@ export default function WebSearchResults({results}) {
             <Link className='text-sm truncate' href={result.link}> 
             {result.formattedUrl}
             </Link>
-              <Link className='group-hover:underline decoration-blue-800 text-xl truncate font-medium text-blue-800' href={result.link}>
+              <Link className='group-hover:underline decoration-blue-800 text-lg truncate font-medium text-blue-800' href={result.link}>
                 {result.title}
               </Link>
           </div>
